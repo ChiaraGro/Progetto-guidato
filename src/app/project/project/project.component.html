@@ -1,0 +1,57 @@
+
+<div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="projects.length > 0; else noProject">
+  <!-- se non ci sono progetti, ng if elimina tutto quello che è contenuto nel div -->
+<div class="col" *ngFor="let project of projects">
+  <div class="card" [ngClass]="project.done ? 'border-info' : 'border-warning'">
+    <div class="card-body">
+      <h5 class="card-title">
+        <span class="badge bg-secondary rounded-pill">{{project.code}}{{project.name}}</span>
+      </h5>
+      <p class="card-text">{{project.description}}</p>
+      <button [disabled]='project.done' class="btn btn-primary btn-sm">Vai al Progetto</button>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"[ngStyle]="{'font-style': project.done ? 'italic' : 'normal'}">
+        <span>{{ project.start | date: 'dd/MMMM/yyyy'}}</span>
+        <span *ngIf="project.end"> | {{project.end | date: 'dd/MMMM/yyyy'}}</span>
+      </small>
+    </div>
+  </div>
+</div>
+</div>
+<hr>
+<form class="row g-3" #f="ngForm">
+  <div class="col-md-4">
+    <label for="name" class="form-label">Nome</label>
+    <input type="text" name="name" class="form-control" placeholder="Nome">
+    <p class="text-danger"><small>Il campo è richiesto</small></p>
+  </div>
+  <div class="col-md-4">
+    <label for="priority" class="form-label">Priority</label>
+    <select name="priority" class="form-select">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <p class="text-danger"><small>Il campo è richiesto</small></p>
+  </div>
+  <div class="col-md-4">
+    <label for="validationDefaultUsername" class="form-label">Date</label>
+    <input type="date" name="start" class="form-control" placeholder="Data inizio">
+    <p class="text-danger"><small>Il campo è richiesto</small></p>
+  </div>
+  <div class="col-md-12">
+    <label for="description" class="form-label">Description</label>
+    <textarea name="description" class="form-control" placeholder="Descrizione" cols="30" rows="10"></textarea>
+    <p class="text-danger"><small>Il campo è richiesto</small></p>
+
+  <div class="col-12">
+    <button type="submit" class="w-100 btn btn-primary btn-lg">Crea</button>
+  </div>
+  </div>
+</form>
+
+<ng-template #noProject>
+  <p>Non è presente nessun progetto</p>
+</ng-template>
+<!-- fall back da visualizzare, nel caso in cui non ci sono progetti -->
