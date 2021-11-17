@@ -56,14 +56,14 @@ export class ProjectComponent implements OnInit {
     this.selectedProject = project; //metto dentro selectedproject che sta sopra, e viene stampato nel p, il valore che mi trova questa funzione al click
   }
 
-  submitProjectForm(f: NgForm) {
+  submitProjectForm(project: Project) {
     //metodo per fare il submit del form
     this.projects.push({
+      ... project,
       id: this.projects.length,
       code: Math.random().toString(36).replace('0.', '').substring(2, 9),
       done: false,
-      tasks: [],
-      ...f.value,
+      tasks: []
     });
   }
 }
