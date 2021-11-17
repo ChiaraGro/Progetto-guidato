@@ -5,10 +5,10 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-  selectedProject !: Project;
+  selectedProject!: Project;
 
   projects: Project[] = [
     {
@@ -20,7 +20,7 @@ export class ProjectComponent implements OnInit {
       end: new Date(2022, 1, 1),
       priority: 'medium',
       done: true,
-      tasks: []
+      tasks: [],
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ export class ProjectComponent implements OnInit {
       end: new Date(2022, 1, 1),
       priority: 'low',
       done: true,
-      tasks: []
+      tasks: [],
     },
     {
       id: 3,
@@ -41,10 +41,8 @@ export class ProjectComponent implements OnInit {
       start: new Date(2021, 1, 30),
       priority: 'high',
       done: false,
-      tasks: []
+      tasks: [],
     },
-
-
   ];
 
   constructor() {
@@ -52,15 +50,20 @@ export class ProjectComponent implements OnInit {
     // this.projects = []; //svuoto l'array dei progetti
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  selectProject(project: Project){
+  selectProject(project: Project) {
     this.selectedProject = project; //metto dentro selectedproject che sta sopra, e viene stampato nel p, il valore che mi trova questa funzione al click
   }
 
-  submitProjectForm(f: NgForm){  //metodo per fare il submit del form
-    console.log('form submit', f.value);
+  submitProjectForm(f: NgForm) {
+    //metodo per fare il submit del form
+    this.projects.push({
+      id: this.projects.length,
+      code: Math.random().toString(36).replace('0.', '').substring(2, 9),
+      done: false,
+      tasks: [],
+      ...f.value,
+    });
   }
-
 }
