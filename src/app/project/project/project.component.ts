@@ -1,5 +1,6 @@
 import { Project } from './../../models/Project';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-project',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
+  selectedProject !: Project;
+
   projects: Project[] = [
     {
       id: 1,
@@ -50,6 +53,14 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  selectProject(project: Project){
+    this.selectedProject = project; //metto dentro selectedproject che sta sopra, e viene stampato nel p, il valore che mi trova questa funzione al click
+  }
+
+  submitProjectForm(f: NgForm){  //metodo per fare il submit del form
+    console.log('form submit', f.value);
   }
 
 }
