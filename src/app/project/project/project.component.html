@@ -1,27 +1,8 @@
 
-<div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="projects.length > 0; else noProject">
-  <!-- se non ci sono progetti, ng if elimina tutto quello che è contenuto nel div -->
-<div class="col" *ngFor="let project of projects">
-  <div class="card" [ngClass]="project.done ? 'border-info' : 'border-warning'">
-    <div class="card-body">
-      <h5 class="card-title">
-        <span class="badge bg-secondary rounded-pill">{{project.code}}{{project.name}}</span>
-      </h5>
-      <p class="card-text">{{project.description}}</p>
-      <!-- <button [disabled]="project.done" class="btn btn-primary btn-sm">Vai al Progetto</button> -->
-      <!-- facendo il binding di disabled con le quadre, quando project.done è true, il bottone si disabilita -->
-      <button class="btn btn-primary btn-sm" (click)="selectProject(project)">Vai al Progetto</button>
 
-    </div>
-    <div class="card-footer">
-      <small class="text-muted"[ngStyle]="{'font-style': project.done ? 'italic' : 'normal'}">
-        <span>{{ project.start | date: 'dd/MMMM/yyyy'}}</span>
-        <span *ngIf="project.end"> | {{project.end | date: 'dd/MMMM/yyyy'}}</span>
-      </small>
-    </div>
-  </div>
-</div>
-</div>
+
+<app-project-list [projects]="projects" (selected)="selectProject($event)"></app-project-list>
+     <!-- originale nel figlio     valore parent-->
 
 <hr>
 <p *ngIf="selectedProject">Progetto selezionato: {{selectedProject.name}}</p>
