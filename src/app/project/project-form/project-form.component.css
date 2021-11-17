@@ -1,0 +1,4 @@
+.form-control.ng-invalid.ng-touched, .form-selectng-invalid.ng-touched{
+  border: 1px solid red;
+}
+/* diventa rosso solo se sono toccati e invalid */
