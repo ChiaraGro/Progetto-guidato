@@ -1,14 +1,10 @@
 
-<div class="row nt-5">
-  <div class="col-8">
-    <h2>I miei Progetti</h2>
-  </div>
-  <div class="col text-end">
-    <button class="btn btn-link" routerLink="/home">Torna alla Dashboard</button>
-  </div>
-</div>
+<!-- <app-section-header [title]="'I miei Progetti'" [buttonLabel]="'Torna alla Dashboard'" [buttonLink]="'/home'"></app-section-header> -->
+<!-- questo sopra se si usano solo gli input singoli. Se si usa _button e interfaccia, invece come sotto: -->
 
-<hr />
+
+<app-section-header [title]="'I miei Progetti'" [button]="{label: 'Torna alla Dashboard', link:'/home'}" ></app-section-header>
+
 
 <app-project-list [projects]="projects" (selected)="selectProject($event)"></app-project-list>
      <!-- originale nel figlio     valore parent-->
