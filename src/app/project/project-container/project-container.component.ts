@@ -1,3 +1,4 @@
+import { ProjectService } from './../project.service';
 import { Project } from '../../models/Project';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -12,25 +13,25 @@ export class ProjectContainerComponent implements OnInit {
 
   projects: Project[] = [];
 
-  constructor() {
+  constructor(private projectService: ProjectService) {}
     // delete this.projects[0].end; //elimina, modifica, aggiunge una proprietà
     // this.projects = []; //svuoto l'array dei progetti
-  }
 
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.projects = this.projectService.getAll(); //carica i progetti
+  }
 
   selectProject(project: Project) {
-    this.selectedProject = project; //metto dentro selectedproject che sta sopra, e viene stampato nel p, il valore che mi trova questa funzione al click
+    this.selectedProject = this.projectService.get(project.id);
   }
+    // this.selectedProject = project;
+    // SENZA SERVICE metto dentro selectedproject che sta sopra, e viene stampato nel p, il valore che mi trova questa funzione al click
+
 
   submitProjectForm(project: Project) {
-    //metodo per fare il submit del form
-    this.projects.push({
-      ... project,
-      id: this.projects.length,
-      code: Math.random().toString(36).replace('0.', '').substring(2, 9),
-      done: false,
-      tasks: []
-    });
+    this.projectService.add(project);
+    };
+    //metodo per fare il submit del form, aggiungendo un progetto tramite form
   }
-}
+
