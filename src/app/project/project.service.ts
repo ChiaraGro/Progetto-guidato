@@ -47,7 +47,13 @@ export class ProjectService {
   }
 
   add(project: Project): void {   //aggiungere un nuovo progetto pushandolo nell'array
-    this.projects.push(project);
+    this.projects.push({
+      ...project,
+      id: this.projects.length,
+      code: Math.random().toString(36).replace('0', '').substring(2,9),
+      done: false,
+      tasks: []
+    });
   }
 
 
