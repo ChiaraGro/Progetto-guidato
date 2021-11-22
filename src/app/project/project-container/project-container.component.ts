@@ -10,40 +10,7 @@ import { NgForm } from '@angular/forms';
 export class ProjectContainerComponent implements OnInit {
   selectedProject!: Project;
 
-  projects: Project[] = [
-    {
-      id: 1,
-      code: 'Nyftyf',
-      name: 'Progetto A',
-      description: 'ciao',
-      start: new Date(2021, 1, 30),
-      end: new Date(2022, 1, 1),
-      priority: 'medium',
-      done: true,
-      tasks: [],
-    },
-    {
-      id: 2,
-      code: 'hfhfhf',
-      name: 'Progetto B',
-      description: 'ciao',
-      start: new Date(2021, 1, 30),
-      end: new Date(2022, 1, 1),
-      priority: 'low',
-      done: true,
-      tasks: [],
-    },
-    {
-      id: 3,
-      code: 'hfgjyhfv',
-      name: 'Progetto C',
-      description: 'ciao',
-      start: new Date(2021, 1, 30),
-      priority: 'high',
-      done: false,
-      tasks: [],
-    },
-  ];
+  projects: Project[] = [];
 
   constructor() {
     // delete this.projects[0].end; //elimina, modifica, aggiunge una proprietà
